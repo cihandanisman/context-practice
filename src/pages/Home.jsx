@@ -15,14 +15,18 @@ const Home = () => {
 
     try {
       const res = await fetch(`${url}/current.json?key=${apiKey}&q=${search}`);
+      
 
       if (!res.ok) {
-        throw new Error("Failed!!1");
+        throw new Error("Failed!!");
       } else {
-        setData(res.json());
+        const datam = await res.json()
+        setData(datam);
+        console.log(data);
+   
       }
     } catch (error) {
-      console.Error(error);
+      console.error(error);
     }
   };
   useEffect(() => {
@@ -36,7 +40,7 @@ const Home = () => {
 
   return (
     <>
-      <Form inline onSubmit={handleSearch}>
+      <Form className="d-flex justify-content-center align-items-center mt-5" inline onSubmit={handleSearch}>
         <Row>
           <Col xs="auto">
             <Form.Control
