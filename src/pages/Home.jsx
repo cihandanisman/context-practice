@@ -15,20 +15,18 @@ const Home = () => {
 
     try {
       const res = await fetch(`${url}/current.json?key=${apiKey}&q=${search}`);
-      
-
       if (!res.ok) {
         throw new Error("Failed!!");
       } else {
-        const datam = await res.json()
-        setData(datam);
-        console.log(datam);
-   
+        const datam = await res.json();
+
+        setData((data) => [...data, datam]);
       }
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -38,9 +36,19 @@ const Home = () => {
     getData();
   };
 
+  const handleDelete = (item) => {
+    const newData = data.filter((dataItem) => dataItem.location.name !== item.location.name);
+    setData(newData);
+  };
+  
+
   return (
     <>
-      <Form className="d-flex justify-content-center align-items-center mt-5" inline onSubmit={handleSearch}>
+      <Form
+        className="d-flex justify-content-center align-items-center mt-5"
+        inline
+        onSubmit={handleSearch}
+      >
         <Row>
           <Col xs="auto">
             <Form.Control
@@ -48,7 +56,7 @@ const Home = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search"
-              className=" mr-sm-2"
+              className="mr-sm-2"
             />
           </Col>
           <Col xs="auto">
@@ -56,9 +64,11 @@ const Home = () => {
           </Col>
         </Row>
       </Form>
-      {data.map((item) => 
-      <CardWeather item={item}/>
-    )}
+      <div className="d-flex flex-wrap justify-content-center">
+        {data.map((item, index) => (
+          <CardWeather key={index} handleDelete={handleDelete} item={item} />
+        ))}
+      </div>
     </>
   );
 };
