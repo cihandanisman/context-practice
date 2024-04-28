@@ -22,7 +22,7 @@ const Home = () => {
       } else {
         const datam = await res.json()
         setData(datam);
-        console.log(data);
+        console.log(datam);
    
       }
     } catch (error) {
@@ -56,7 +56,9 @@ const Home = () => {
           </Col>
         </Row>
       </Form>
-      <CardWeather data={data} />
+      {data.map((item) => 
+      <CardWeather item={item}/>
+    )}
     </>
   );
 };
