@@ -34,41 +34,77 @@ const Home = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     getData();
+    setSearch("");
   };
 
   const handleDelete = (item) => {
-    const newData = data.filter((dataItem) => dataItem.location.name !== item.location.name);
+    const newData = data.filter(
+      (dataItem) => dataItem.location.name !== item.location.name
+    );
     setData(newData);
   };
-  
 
   return (
     <>
-      <Form
-        className="d-flex justify-content-center align-items-center mt-5"
-        inline
-        onSubmit={handleSearch}
-      >
-        <Row>
-          <Col xs="auto">
-            <Form.Control
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search"
-              className="mr-sm-2"
-            />
-          </Col>
-          <Col xs="auto">
-            <Button type="submit">Submit</Button>
-          </Col>
-        </Row>
-      </Form>
-      <div className="d-flex flex-wrap justify-content-center">
-        {data.map((item, index) => (
-          <CardWeather key={index} handleDelete={handleDelete} item={item} />
-        ))}
-      </div>
+      {!data ? (
+        <>
+          <Form
+            className="d-flex justify-content-center align-items-center mt-5"
+            inline
+            onSubmit={handleSearch}
+          >
+            <Row>
+              <Col xs="auto">
+                <Form.Control
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search"
+                  className="mr-sm-2"
+                />
+              </Col>
+              <Col xs="auto">
+                <Button type="submit">Submit</Button>
+              </Col>
+            </Row>
+          </Form>
+        </>
+      ) : (
+        <>
+          <div className="d-flex justify-content-center">
+            <h1>Search for a city!!</h1>
+          </div>
+          <Form
+            className="d-flex justify-content-center align-items-center mt-5"
+            inline
+            onSubmit={handleSearch}
+          >
+            <Row>
+              <Col xs="auto">
+                <Form.Control
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search"
+                  className="mr-sm-2"
+                />
+              </Col>
+              <Col xs="auto">
+                <Button type="submit">Submit</Button>
+              </Col>
+            </Row>
+          </Form>
+          <div className="d-flex flex-wrap justify-content-center">
+            {data.map((item, index) => (
+              <CardWeather
+                key={index}
+                handleDelete={handleDelete}
+                item={item}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 };
