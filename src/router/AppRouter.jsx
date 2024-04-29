@@ -5,20 +5,24 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import More from "../pages/More";
 import MyNavbar from "../components/Navbar";
-import PrivateRoute from "./Privaterouter";
+import PrivateRouter from "./Privaterouter";
+import Login from "../pages/Login";
+import Footer from "../pages/Footer";
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
       <MyNavbar />
+      
       <Routes>
-        <Route path="/" element={<PrivateRoute />}>
+        <Route path="/" element={<PrivateRouter />}>
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/more" element={<More />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

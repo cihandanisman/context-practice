@@ -8,23 +8,35 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function MyNavbar() {
-  const {handleLogOut} = useContext(AuthContext)
+  const { handleLogOut } = useContext(AuthContext);
 
   return (
     <>
-      <Navbar  bg="secondary" className="shadow d-flex flex-flex-wrap justify-content-between align-item-center p-3" data-bs-theme="dark">
+      <Navbar
+        bg="secondary"
+        className="shadow d-flex flex-flex-wrap justify-content-between align-item-center p-3"
+        data-bs-theme="dark"
+      >
         <Container>
           <Navbar.Brand>
             Weather Underground <TiWeatherStormy />
           </Navbar.Brand>
           <Nav className="">
-            <Nav.Link as={Link} to="/home" >Home</Nav.Link>
-            <Nav.Link as={Link} to="/about" >About</Nav.Link>
-            <Nav.Link >Contact</Nav.Link>
-            <Nav.Link >More</Nav.Link>
+            <Nav.Link as={Link} to="/home">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact">
+              Contact
+            </Nav.Link>
+            <Nav.Link as={Link} to="/more">
+              More
+            </Nav.Link>
           </Nav>
           <div className="text-white">
-            <IoIosLogOut onClick={handleLogOut} size={"25"}/>
+            <IoIosLogOut onClick={handleLogOut} size={"25"} />
           </div>
         </Container>
       </Navbar>
