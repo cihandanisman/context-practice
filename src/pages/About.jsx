@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
 const About = () => {
   return (
-    <div>About</div>
-  )
-}
+    <div className="d-flex justify-content-center align-items-center w-100" style={{ height: '100vh' }}>
+        <h1>ABOUT</h1>
 
-export default About
+    </div>
+  );
+};
+
+
+export default About;

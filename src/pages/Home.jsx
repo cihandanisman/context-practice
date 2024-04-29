@@ -19,6 +19,7 @@ const Home = () => {
         throw new Error("Failed!!");
       } else {
         const datam = await res.json();
+        console.log(datam);
 
         setData((data) => [...data, datam]);
       }
